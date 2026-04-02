@@ -3,13 +3,13 @@ package specs.update;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.ResponseSpecification;
 
-import static io.restassured.filter.log.LogDetail.ALL;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.notNullValue;
+import static specs.BaseSpec.baseResponseSpec;
 
 public class UpdateSpec {
     public static ResponseSpecification successUpdateResponseSpec = new ResponseSpecBuilder()
-            .log(ALL)
+            .addResponseSpecification(baseResponseSpec)
             .expectStatusCode(200)
             .expectBody(matchesJsonSchemaInClasspath("schemas/update/successful_update_response_schema.json"))
             .expectBody("id", notNullValue())
@@ -17,7 +17,7 @@ public class UpdateSpec {
             .build();
 
     public static ResponseSpecification fieldRequiredResponseSpec = new ResponseSpecBuilder()
-            .log(ALL)
+            .addResponseSpecification(baseResponseSpec)
             .expectStatusCode(400)
             .expectBody(matchesJsonSchemaInClasspath("schemas/login/empty_field_response_schema.json"))
             .expectBody("username", notNullValue())
