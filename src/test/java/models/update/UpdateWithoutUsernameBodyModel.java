@@ -1,3 +1,4 @@
 package models.update;
 
-public record UpdateWithoutUsernameBodyModel(String firstName, String lastName, String email) {}
+public record UpdateWithoutUsernameBodyModel(String firstName, String lastName, String email) {
+}

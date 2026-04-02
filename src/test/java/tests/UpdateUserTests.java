@@ -48,16 +48,16 @@ public class UpdateUserTests extends TestBase {
 
         SuccessfulLoginResponseModel loginResponse =
                 step("Аутентификация пользователя и получение токенов", () -> {
-            LoginBodyModel loginData = new LoginBodyModel(testData.username, testData.password);
-            return given(requestSpec)
-                    .body(loginData)
-                    .when()
-                    .post("/auth/token/")
-                    .then()
-                    .spec(successLoginResponseSpec)
-                    .extract()
-                    .as(SuccessfulLoginResponseModel.class);
-        });
+                    LoginBodyModel loginData = new LoginBodyModel(testData.username, testData.password);
+                    return given(requestSpec)
+                            .body(loginData)
+                            .when()
+                            .post("/auth/token/")
+                            .then()
+                            .spec(successLoginResponseSpec)
+                            .extract()
+                            .as(SuccessfulLoginResponseModel.class);
+                });
 
         step("Проверка наличия токенов", () -> {
             String actualAccess = loginResponse.access();
@@ -172,16 +172,16 @@ public class UpdateUserTests extends TestBase {
     public void usernameFieldRequiredWhenUpdatingTest() {
         SuccessfulRegistrationResponseModel registrationResponse =
                 step("Регистрация нового пользователя", () -> {
-            RegistrationBodyModel registrationData = new RegistrationBodyModel(testData.username, testData.password);
-            return given(requestSpec)
-                    .body(registrationData)
-                    .when()
-                    .post("/users/register/")
-                    .then()
-                    .spec(successRegistrationResponseSpec)
-                    .extract()
-                    .as(SuccessfulRegistrationResponseModel.class);
-        });
+                    RegistrationBodyModel registrationData = new RegistrationBodyModel(testData.username, testData.password);
+                    return given(requestSpec)
+                            .body(registrationData)
+                            .when()
+                            .post("/users/register/")
+                            .then()
+                            .spec(successRegistrationResponseSpec)
+                            .extract()
+                            .as(SuccessfulRegistrationResponseModel.class);
+                });
 
         step("Проверка данных пользователя после регистрации", () -> {
             assertThat(registrationResponse.username()).isEqualTo(testData.username);

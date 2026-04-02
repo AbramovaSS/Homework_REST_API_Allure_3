@@ -1,3 +1,4 @@
 package models.login;
 
-public record LoginBodyModel(String username, String password) {}
+public record LoginBodyModel(String username, String password) {
+}
